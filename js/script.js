@@ -9,26 +9,41 @@ va applicato uno sconto del 40% per gli over 65.
 L'output del prezzo finale va messo fuori in forma umana (con massimo due decimali, per indicare centesimi sul prezzo).
 */
 
-const discountMessage = document.getElementById('discount')
+const discountMessage = document.getElementById('discount');
 
-const userAge = parseInt(prompt('Quanti anni hai?', '70').trim());
+const alertNumber = `Il valore ammesso non è un numero!
+Per favore, inserire solo numeri.`;
+
+const userAge = parseInt(prompt(`Quanti anni hai?
+Solo numeri ammessi.`).trim());
 console.log('userAge: ', userAge);
 
-const userDistance = parseInt(prompt('Per quanti chilometri vuoi viaggiare?', '400').trim());
+if (isNaN(userAge)) {
+	alert(alertNumber);
+	location.reload();
+}
+
+const userDistance = parseInt(prompt(`Per quanti chilometri vuoi viaggiare?
+Inserire un valore espresso in KM.
+Solo numeri ammessi.`).trim());
 console.log('userDistance: ', userDistance);
+
+if (isNaN(userDistance)) {
+	alert(alertNumber);
+	location.reload();
+}
 
 let ticketPrice = userDistance * 0.21;
 console.log('ticketPrice: ', ticketPrice);
-// 84
 
 if (userAge < 18) {
 	ticketPrice = ticketPrice * 0.80;
-	discountMessage.innerText = 'Data la Sua età, lo sconto applicato è del 20%.'
-	// 15 --> 67.2
+	discountMessage.innerText = 'Data la Sua età, è stato applicato uno sconto del 20%.'
+
 } else if (userAge > 65) {
 	ticketPrice = ticketPrice * 0.60;
-	discountMessage.innerText = 'Data la Sua età, lo sconto applicato è del 40%.'
-	// 70 --> 50.4
+	discountMessage.innerText = 'Data la Sua età, è stato applicato uno sconto del 40%.'
+
 } else {
 	discountMessage.innerText = 'Non ci sono sconti applicabili.'
 }
