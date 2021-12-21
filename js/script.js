@@ -21,6 +21,9 @@ console.log('userAge: ', userAge);
 if (isNaN(userAge)) {
 	alert(alertNumber);
 	location.reload();
+} else if (userAge > 120) {
+	alert('Età non valida.');
+	location.reload();
 }
 
 const userDistance = parseInt(prompt(`Per quanti chilometri vuoi viaggiare?
@@ -31,10 +34,13 @@ console.log('userDistance: ', userDistance);
 if (isNaN(userDistance)) {
 	alert(alertNumber);
 	location.reload();
+} else if (userDistance > 2000) {
+	alert('Distanza troppo elevata.');
+	location.reload();
 }
 
 let ticketPrice = userDistance * 0.21;
-console.log('ticketPrice: ', ticketPrice);
+console.log('ticket-price: ', ticketPrice);
 
 if (userAge < 18) {
 	ticketPrice = ticketPrice * 0.80;
@@ -48,5 +54,6 @@ if (userAge < 18) {
 	discountMessage.innerText = 'Non ci sono sconti applicabili.'
 }
 
-document.getElementById('ticketPrice').innerText = ticketPrice.toFixed(2) + '€';
-console.log('Discounted ticketPrice: ', ticketPrice.toFixed(2), '€');
+const priceMessage = 'Il prezzo del Suo biglietto è: ' + ticketPrice.toFixed(2) + '€';
+document.getElementById('ticket-price').innerText = priceMessage;
+console.log('Discounted ticket-price: ', ticketPrice.toFixed(2), '€');
